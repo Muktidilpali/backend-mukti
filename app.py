@@ -33,6 +33,9 @@ class ProductSchema(ma.Schema):
 product_schema=ProductSchema()
 products_schema=ProductSchema(many=True)
 
+@app.route("/", methods=["GET","POST"])
+def hello():
+    return "Hello from Mukti's API"
 
 @app.route("/product", methods=["POST"])
 def insert_product():
