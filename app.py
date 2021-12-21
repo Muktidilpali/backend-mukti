@@ -6,12 +6,14 @@ from flask_cors import CORS
 
 
 app=Flask(__name__)
-CORS(app)
+
 basedir= os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///'+ os.path.join('mukti.sqlite')
 
 db= SQLAlchemy(app)
 ma=Marshmallow(app)
+
+CORS(app)
 class Product(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     name= db.Column(db.String, nullable=False)
@@ -70,6 +72,8 @@ def update(id):
     
     product.name=name
     product.price=price
+    product.sku=sku
+    product.photo=photo
 
     db.session.commit()
 
